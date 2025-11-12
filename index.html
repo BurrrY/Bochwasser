@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bachwasser Rezeptrechner</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Bachwasser</h1>
+            <p class="subtitle">Rezeptrechner</p>
+        </header>
+
+        <main>
+            <section class="calculator">
+                <div class="input-group total">
+                    <label for="total">Gesamtmenge (Liter)</label>
+                    <input type="number" id="total" value="100" min="0" step="0.1">
+                </div>
+
+                <h2>Zutaten</h2>
+
+                <div class="input-group">
+                    <label for="eistee">Körner-Eistee (Dosen à 0,5L)</label>
+                    <input type="number" id="eistee" value="8" min="0" step="0.5">
+                    <span class="liter-display" id="eistee-liter">4,0 L</span>
+                </div>
+
+                <div class="input-group">
+                    <label for="korn">Korn (Liter)</label>
+                    <input type="number" id="korn" value="12" min="0" step="1">
+                </div>
+
+                <div class="input-group">
+                    <label for="wasser">Wasser (Liter)</label>
+                    <input type="number" id="wasser" value="84" min="0" step="1">
+                </div>
+            </section>
+
+            <section class="recommendation">
+                <h2>Unsere Empfehlung</h2>
+                <ul>
+                    <li><strong>Eistee:</strong> Pfirsich-Eistee von Edeka</li>
+                    <li><strong>Korn:</strong> Billigster Korn (mild, damit er den Tee nicht überwältigt)</li>
+                </ul>
+            </section>
+
+            <section class="info">
+                <h2>Über Bachwasser</h2>
+                <p>
+                    Bachwasser ist ein erfrischendes Partygetränk aus der Pfalz, das Körner-Eistee
+                    mit Korn kombiniert. Der perfekte Sommerdrink für gesellige Abende!
+                </p>
+                <h3>Zubereitungstipps</h3>
+                <ul>
+                    <li>Gut gekühlt servieren</li>
+                    <li>Milden Korn verwenden, der den Tee nicht überdeckt</li>
+                    <li>Optional mit Limettenscheibe oder frischer Minze garnieren</li>
+                    <li>Am besten mit Eiswürfeln genießen</li>
+                </ul>
+                <h3>Charakteristik</h3>
+                <p>
+                    Bachwasser vereint traditionelle deutsche Trinkkultur mit einem modernen,
+                    erfrischenden Twist. Das Mischverhältnis kann nach persönlichem Geschmack
+                    angepasst werden - unser Grundrezept bietet einen ausgewogenen Start!
+                </p>
+            </section>
+        </main>
+
+        <footer>
+            <p>Genieße verantwortungsvoll! 🍹</p>
+            <p class="github-link">
+                <a href="https://github.com/BurrrY/Bochwasser" target="_blank" rel="noopener noreferrer">
+                    GitHub Repository
+                </a>
+            </p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
