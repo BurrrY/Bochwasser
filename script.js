@@ -18,7 +18,6 @@ const totalInput = document.getElementById('total');
 const eisteeInput = document.getElementById('eistee');
 const kornInput = document.getElementById('korn');
 const wasserInput = document.getElementById('wasser');
-const eisteeLiterDisplay = document.getElementById('eistee-liter');
 
 // Flag um Endlosschleifen zu verhindern
 let isUpdating = false;
