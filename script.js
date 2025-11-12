@@ -43,11 +43,6 @@ function literZuDosen(liter) {
     return liter / 0.5;
 }
 
-// Aktualisiere die Liter-Anzeige für Eistee
-function updateEisteeLiterDisplay() {
-    const liter = dosenZuLiter(parseFloat(eisteeInput.value) || 0);
-    eisteeLiterDisplay.textContent = `${liter.toFixed(1)} L`;
-}
 
 // Wenn Gesamtmenge geändert wird: alle Zutaten proportional anpassen
 function onTotalChange() {
@@ -65,7 +60,6 @@ function onTotalChange() {
     kornInput.value = roundWhole(kornLiter);
     wasserInput.value = roundWhole(wasserLiter);
 
-    updateEisteeLiterDisplay();
     isUpdating = false;
 }
 
@@ -84,7 +78,6 @@ function onEisteeChange() {
     kornInput.value = roundWhole(newTotal * RATIOS.korn);
     wasserInput.value = roundWhole(newTotal * RATIOS.wasser);
 
-    updateEisteeLiterDisplay();
     isUpdating = false;
 }
 
@@ -103,7 +96,6 @@ function onKornChange() {
     eisteeInput.value = round(literZuDosen(newTotal * RATIOS.eistee));
     wasserInput.value = roundWhole(newTotal * RATIOS.wasser);
 
-    updateEisteeLiterDisplay();
     isUpdating = false;
 }
 
@@ -122,7 +114,6 @@ function onWasserChange() {
     eisteeInput.value = round(literZuDosen(newTotal * RATIOS.eistee));
     kornInput.value = roundWhole(newTotal * RATIOS.korn);
 
-    updateEisteeLiterDisplay();
     isUpdating = false;
 }
 
@@ -132,5 +123,3 @@ eisteeInput.addEventListener('input', onEisteeChange);
 kornInput.addEventListener('input', onKornChange);
 wasserInput.addEventListener('input', onWasserChange);
 
-// Initiale Anzeige aktualisieren
-updateEisteeLiterDisplay();
