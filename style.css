@@ -77,6 +77,44 @@ h2 {
     border-bottom: 2px solid var(--medium-gray);
 }
 
+.header-with-reset {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.header-with-reset h2 {
+    margin-bottom: 0;
+    flex: 1;
+}
+
+.btn-reset {
+    padding: 8px 16px;
+    background: var(--white);
+    color: var(--primary-red);
+    border: 2px solid var(--primary-red);
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.btn-reset:hover {
+    background: var(--primary-red);
+    color: var(--white);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(211, 47, 47, 0.2);
+}
+
+.btn-reset:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(211, 47, 47, 0.2);
+}
+
 h3 {
     color: var(--text-dark);
     font-size: 1.1rem;
@@ -262,4 +300,87 @@ footer p {
 
 input[type="number"]:focus {
     animation: pulse 0.5s ease;
+}
+
+/* Input Wrapper mit Buttons */
+.input-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    position: relative;
+}
+
+.input-wrapper input[type="number"] {
+    flex: 1;
+}
+
+/* Plus/Minus Buttons */
+.btn-increase,
+.btn-decrease {
+    display: none; /* Standardmäßig versteckt */
+    width: 45px;
+    height: 45px;
+    border: 2px solid var(--primary-red);
+    background: var(--white);
+    color: var(--primary-red);
+    font-size: 1.5rem;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.btn-increase:hover,
+.btn-decrease:hover {
+    background: var(--primary-red);
+    color: var(--white);
+    transform: scale(1.05);
+}
+
+.btn-increase:active,
+.btn-decrease:active {
+    transform: scale(0.95);
+    background: var(--dark-red);
+    border-color: var(--dark-red);
+}
+
+/* Spezielle Styles für Total Input Buttons */
+.input-group.total .btn-increase,
+.input-group.total .btn-decrease {
+    border-color: var(--white);
+    background: rgba(255, 255, 255, 0.2);
+    color: var(--white);
+}
+
+.input-group.total .btn-increase:hover,
+.input-group.total .btn-decrease:hover {
+    background: var(--white);
+    color: var(--primary-red);
+}
+
+.input-group.total .btn-increase:active,
+.input-group.total .btn-decrease:active {
+    background: rgba(255, 255, 255, 0.9);
+}
+
+/* Zeige Buttons auf mobilen Geräten */
+@media (max-width: 767px) {
+    .btn-increase,
+    .btn-decrease {
+        display: block;
+    }
+
+    /* Verstecke native number input Spinner auf mobilen Geräten */
+    input[type="number"]::-webkit-inner-spin-button,
+    input[type="number"]::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    input[type="number"] {
+        -moz-appearance: textfield;
+    }
 }

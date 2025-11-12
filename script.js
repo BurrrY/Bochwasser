@@ -122,3 +122,57 @@ eisteeInput.addEventListener('input', onEisteeChange);
 kornInput.addEventListener('input', onKornChange);
 wasserInput.addEventListener('input', onWasserChange);
 
+// Plus/Minus Button Funktionalität
+document.querySelectorAll('.btn-increase, .btn-decrease').forEach(button => {
+    button.addEventListener('click', function(e) {
+        if (isUpdating) return;
+
+        // Verhindere mehrfaches Triggern
+        e.preventDefault();
+
+        const targetId = this.getAttribute('data-target');
+        const input = document.getElementById(targetId);
+
+        if (!input) return;
+
+        const currentValue = parseFloat(input.value) || 0;
+        const step = parseFloat(input.getAttribute('step')) || 1;
+        const min = parseFloat(input.getAttribute('min')) || 0;
+
+        let newValue;
+        if (this.classList.contains('btn-increase')) {
+            newValue = currentValue + step;
+        } else {
+            newValue = Math.max(min, currentValue - step);
+        }
+
+        // Runde auf die gleiche Anzahl Dezimalstellen wie der Step
+        const decimals = (step.toString().split('.')[1] || '').length;
+        newValue = Math.round(newValue * Math.pow(10, decimals)) / Math.pow(10, decimals);
+
+        // Setze Wert und trigger Event ohne dass die onChange-Funktionen rekursiv aufgerufen werden
+        isUpdating = true;
+        input.value = newValue;
+        isUpdating = false;
+
+        // Trigger input event um die Berechnungen auszulösen
+        input.dispatchEvent(new Event('input', { bubbles: true }));
+    });
+});
+
+// Reset Button Funktionalität
+const resetButton = document.getElementById('reset-btn');
+if (resetButton) {
+    resetButton.addEventListener('click', function() {
+        isUpdating = true;
+
+        // Setze alle Werte auf die Grundrezeptwerte zurück
+        totalInput.value = BASE_RECIPE.total;
+        eisteeInput.value = BASE_RECIPE.eisteeDosen;
+        kornInput.value = BASE_RECIPE.korn;
+        wasserInput.value = BASE_RECIPE.wasser;
+
+        isUpdating = false;
+    });
+}
+
