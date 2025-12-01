@@ -1,16 +1,16 @@
 // Grundrezept für 100L
 const BASE_RECIPE = {
     total: 100,
-    eisteeDosen: 8,
-    korn: 12,
-    wasser: 84
+    eisteeDosen: 8.5,
+    korn: 14,
+    wasser: 86
 };
 
 // Berechne Verhältnisse aus dem Grundrezept
 const RATIOS = {
-    eistee: dosenZuLiter(BASE_RECIPE.eisteeDosen) / BASE_RECIPE.total,  // 4L / 100L = 0.04
-    korn: BASE_RECIPE.korn / BASE_RECIPE.total,                         // 12L / 100L = 0.12
-    wasser: BASE_RECIPE.wasser / BASE_RECIPE.total                      // 84L / 100L = 0.84
+    eistee: dosenZuLiter(BASE_RECIPE.eisteeDosen) / BASE_RECIPE.total, 
+    korn: BASE_RECIPE.korn / BASE_RECIPE.total,                        
+    wasser: BASE_RECIPE.wasser / BASE_RECIPE.total                   
 };
 
 // DOM-Elemente
@@ -42,6 +42,17 @@ function literZuDosen(liter) {
     return liter / 0.5;
 }
 
+// Berechne Liter aus Flaschen (0.7L pro Flasche)
+function flaschenZuLiter(dosen) {
+    return dosen * 0.7;
+}
+
+// Berechne Dosen aus Liter
+function literZuFlaschen(liter) {
+    return liter / 0.7;
+}
+
+
 
 // Wenn Gesamtmenge geändert wird: alle Zutaten proportional anpassen
 function onTotalChange() {
@@ -56,7 +67,8 @@ function onTotalChange() {
     const wasserLiter = newTotal * RATIOS.wasser;
 
     eisteeInput.value = round(literZuDosen(eisteeLiter));
-    kornInput.value = roundWhole(kornLiter);
+    //kornInput.value = roundWhole(kornLiter);
+    kornInput.value = round(literZuFlaschen(kornLiter));
     wasserInput.value = roundWhole(wasserLiter);
 
     isUpdating = false;
@@ -74,7 +86,8 @@ function onEisteeChange() {
 
     // Passe alle anderen Werte an
     totalInput.value = round(newTotal);
-    kornInput.value = roundWhole(newTotal * RATIOS.korn);
+    //kornInput.value = roundWhole(newTotal * RATIOS.korn);
+    kornInput.value = round(literZuFlaschen(newTotal * RATIOS.korn));
     wasserInput.value = roundWhole(newTotal * RATIOS.wasser);
 
     isUpdating = false;
@@ -85,7 +98,7 @@ function onKornChange() {
     if (isUpdating) return;
     isUpdating = true;
 
-    const kornLiter = parseFloat(kornInput.value) || 0;
+    const kornLiter = flaschenZuLiter(parseFloat(kornInput.value) || 0);
 
     // Berechne neue Gesamtmenge basierend auf dem Korn-Anteil
     const newTotal = kornLiter / RATIOS.korn;
@@ -111,7 +124,8 @@ function onWasserChange() {
     // Passe alle anderen Werte an
     totalInput.value = round(newTotal);
     eisteeInput.value = round(literZuDosen(newTotal * RATIOS.eistee));
-    kornInput.value = roundWhole(newTotal * RATIOS.korn);
+    //kornInput.value = roundWhole(newTotal * RATIOS.korn);
+    kornInput.value = round(literZuFlaschen(newTotal * RATIOS.korn));
 
     isUpdating = false;
 }
