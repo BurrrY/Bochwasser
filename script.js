@@ -2,15 +2,16 @@
 const BASE_RECIPE = {
     total: 100,
     eisteeDosen: 8.5,
-    korn: 14,
+    korn: 20, //flaschen
     wasser: 86
 };
 
 // Berechne Verhältnisse aus dem Grundrezept
+// Gesamtmenge = korn + wasser (ohne Eistee)
 const RATIOS = {
-    eistee: dosenZuLiter(BASE_RECIPE.eisteeDosen) / BASE_RECIPE.total, 
-    korn: BASE_RECIPE.korn / BASE_RECIPE.total,                        
-    wasser: BASE_RECIPE.wasser / BASE_RECIPE.total                   
+    eistee: dosenZuLiter(BASE_RECIPE.eisteeDosen) / BASE_RECIPE.total,
+    korn: flaschenZuLiter(BASE_RECIPE.korn) / BASE_RECIPE.total,
+    wasser: BASE_RECIPE.wasser / BASE_RECIPE.total
 };
 
 // DOM-Elemente
