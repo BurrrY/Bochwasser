@@ -2,7 +2,7 @@
 const BASE_RECIPE = {
     total: 100,
     eisteeDosen: 8.5,
-    korn: 20, //flaschen
+    korn: 12, //flaschen
     wasser: 86
 };
 
