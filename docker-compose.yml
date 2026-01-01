@@ -6,4 +6,6 @@ services:
     container_name: bachwasser-rechner
     ports:
       - "8080:80"
+    environment:
+      - UMAMI_WEBSITE_ID=${UMAMI_WEBSITE_ID:-}
     restart: unless-stopped

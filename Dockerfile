@@ -6,7 +6,12 @@ COPY index.html /usr/share/nginx/html/
 COPY style.css /usr/share/nginx/html/
 COPY script.js /usr/share/nginx/html/
 
+# Kopiere und setze das Entrypoint-Skript
+COPY docker-entrypoint.sh /docker-entrypoint.sh
+RUN chmod +x /docker-entrypoint.sh
+
 # Exponiere Port 80
 EXPOSE 80
 
-# nginx startet automatisch durch das Base-Image
+# Verwende das Custom-Entrypoint
+ENTRYPOINT ["/docker-entrypoint.sh"]
