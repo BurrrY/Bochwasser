@@ -384,3 +384,112 @@ input[type="number"]:focus {
         -moz-appearance: textfield;
     }
 }
+
+/* Disclaimer Popup Styles */
+.disclaimer-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.disclaimer-popup.hidden {
+    display: none;
+}
+
+.disclaimer-content {
+    background: var(--white);
+    border-radius: 15px;
+    padding: 20px;
+    max-width: 90%;
+    max-height: 90vh;
+    overflow: auto;
+    text-align: center;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
+.disclaimer-content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.btn-accept {
+    padding: 15px 40px;
+    background: linear-gradient(135deg, var(--primary-red) 0%, var(--light-red) 100%);
+    color: var(--white);
+    border: none;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(211, 47, 47, 0.3);
+}
+
+.btn-accept:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(211, 47, 47, 0.4);
+}
+
+.btn-accept:active {
+    transform: translateY(0);
+}
+
+/* Minimized Disclaimer Icon */
+.disclaimer-minimized {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, var(--primary-red) 0%, var(--light-red) 100%);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    z-index: 999;
+    box-shadow: 0 4px 15px rgba(211, 47, 47, 0.4);
+    transition: all 0.3s ease;
+}
+
+.disclaimer-minimized:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(211, 47, 47, 0.5);
+}
+
+.exclamation-icon {
+    color: var(--white);
+    font-size: 1.8rem;
+    font-weight: bold;
+    line-height: 1;
+}
+
+/* Responsive adjustments for popup */
+@media (min-width: 768px) {
+    .disclaimer-content {
+        max-width: 500px;
+        padding: 30px;
+    }
+
+    .disclaimer-minimized {
+        bottom: 30px;
+        right: 30px;
+        width: 60px;
+        height: 60px;
+    }
+
+    .exclamation-icon {
+        font-size: 2.2rem;
+    }
+}

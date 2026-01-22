@@ -191,3 +191,46 @@ if (resetButton) {
     });
 }
 
+// Disclaimer Popup Funktionalität
+const DISCLAIMER_KEY = 'bochwasser_disclaimer_accepted';
+
+const disclaimerPopup = document.getElementById('disclaimer-popup');
+const disclaimerAcceptBtn = document.getElementById('disclaimer-accept');
+const disclaimerMinimized = document.getElementById('disclaimer-minimized');
+
+function initDisclaimerPopup() {
+    const hasAccepted = localStorage.getItem(DISCLAIMER_KEY);
+
+    if (hasAccepted) {
+        // User hat bereits zugestimmt - zeige minimiertes Icon
+        disclaimerPopup.classList.add('hidden');
+        disclaimerMinimized.style.display = 'flex';
+    } else {
+        // Erster Besuch - zeige Popup
+        disclaimerPopup.classList.remove('hidden');
+        disclaimerMinimized.style.display = 'none';
+    }
+}
+
+function acceptDisclaimer() {
+    localStorage.setItem(DISCLAIMER_KEY, 'true');
+    disclaimerPopup.classList.add('hidden');
+    disclaimerMinimized.style.display = 'flex';
+}
+
+function showDisclaimer() {
+    disclaimerPopup.classList.remove('hidden');
+}
+
+// Event Listeners für Disclaimer
+if (disclaimerAcceptBtn) {
+    disclaimerAcceptBtn.addEventListener('click', acceptDisclaimer);
+}
+
+if (disclaimerMinimized) {
+    disclaimerMinimized.addEventListener('click', showDisclaimer);
+}
+
+// Initialisiere Disclaimer beim Laden der Seite
+initDisclaimerPopup();
+
